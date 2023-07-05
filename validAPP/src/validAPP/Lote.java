@@ -2,28 +2,40 @@ package validAPP;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
-public class Lote {
-	
+public class Lote implements Comparable<Lote>{
 	//ATRIBUTOS
-	public String nome;
+	public int qtdProdutos;
+	public String numero;
 	public String validade;
 	public String localidade;
-	public int quantidade;
+	public ArrayList<Produto> produtos;
+	public long diasRestantes;
 	
-	public Lote(String nome, String validade, String localidade, int quantidade) {
-		this.nome = nome;
+	//METODO CONSTRUTOR
+	public Lote(ArrayList<Produto> produtos, String validade, String numeroLote, String localidade, int qtdProdutos) {
+		this.produtos = produtos;
+		this.numero = numeroLote;
 		this.validade = validade;
 		this.localidade = localidade;
-		this.quantidade = quantidade;
-	}
-	
-	public long quantDeDiasRestantes(String validade) {
+		this.qtdProdutos = qtdProdutos;
 		DateTimeFormatter formatacaoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate dataAtual = LocalDate.now();
-		LocalDate validadeDoLote = LocalDate.parse(validade, formatacaoData);
-		long quantDiasRestantes = ChronoUnit.DAYS.between(dataAtual, validadeDoLote);
-		return quantDiasRestantes; 
+		LocalDate validadeDoLote = LocalDate.parse(this.validade, formatacaoData);
+		this.diasRestantes = ChronoUnit.DAYS.between(dataAtual, validadeDoLote);
+	}
+	
+	//MÉTODOS
+
+	@Override
+	public int compareTo(Lote L) {
+		if (this.diasRestantes > L.diasRestantes){ 
+			return 1; 
+		}if (this.diasRestantes < L.diasRestantes){ 
+			return -1; 
+		}
+		return 0; 
 	}
 	
 }

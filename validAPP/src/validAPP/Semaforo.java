@@ -18,15 +18,14 @@ public class Semaforo {
 		Vermelho = new ArrayList <Lote>();
 	}
 	
-	public void verificarValidade(ArrayList<Lote> estoque) {
+	public void verificarValidade(ArrayList<Lote> lotes) {
 		
-		for(Lote lote : estoque) {
-			long quant = lote.quantDeDiasRestantes(lote.validade);
-			if(quant < 0) { //vermelho
+		for(Lote lote : lotes) {
+			if(lote.diasRestantes < 0) { //vermelho
 				this.Vermelho.add(lote);
-			}else if(quant < 30){ //amarelo
+			}else if(lote.diasRestantes < 30){ //amarelo
 				this.Amarelo.add(lote);
-			}else if(quant > 30){ //verde
+			}else if(lote.diasRestantes >= 30){ //verde
 				this.Verde.add(lote);
 			}
 		}
@@ -37,7 +36,8 @@ public class Semaforo {
 		System.out.println("------------------------------------------------");
 		System.out.println(ANSI_GREEN + " Lotes com validade adequada: " + ANSI_RESET);
 		for (Lote lote : Verde) {
-			System.out.println(" - " + lote.nome + " (" + lote.validade + ")");
+			long quant = lote.diasRestantes;
+			System.out.println(" - " + lote.produtos.get(0).nome + " (" + lote.validade + " - " + quant + " dias restantes)");
 		}
 	}
 	
@@ -45,7 +45,8 @@ public class Semaforo {
 		System.out.println("------------------------------------------------");
 		System.out.println(ANSI_YELLOW + " Lotes com menos de 1 mês de validade: " + ANSI_RESET);
 		for (Lote lote : Amarelo) {
-			System.out.println(" - " + lote.nome + " (" + lote.validade + ")");
+			long quant = lote.diasRestantes;
+			System.out.println(" - " + lote.produtos.get(0).nome + " (" + lote.validade + " - " + quant + " dias restantes)");
 		}
 	}
 	
@@ -53,8 +54,16 @@ public class Semaforo {
 		System.out.println("------------------------------------------------");
 		System.out.println(ANSI_RED + " Lotes vencidos: " + ANSI_RESET);
 		for (Lote lote : Vermelho) {
-			System.out.println(" - " + lote.nome + " (" + lote.validade + ")");
+			long quant = lote.diasRestantes;
+			System.out.println(" - " + lote.produtos.get(0).nome + " (" + lote.validade + " - vencido a " + quant*(-1) + " dias)");
 		}
+	}
+	
+	public void mostrarSemaforo(ArrayList<Lote> lotes) {
+		verificarValidade(lotes);
+		imprimirVerde();
+		imprimirAmarelo();
+		imprimirVermelho();
 	}
 	
 }
