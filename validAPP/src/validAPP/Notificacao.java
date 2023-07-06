@@ -8,9 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Screen extends JFrame{
+public class Notificacao extends JFrame{
 	
-	public Screen () {
+	public Notificacao () {
 		setVisible(true);
 		setSize(266,500);
 		setTitle("validAPP");
@@ -29,6 +29,7 @@ public class Screen extends JFrame{
 		add(Amarelo);
 		Amarelo.setText(lote.produtos.get(0).nome);
 	}
+	
 	public void criarBotaoVerde(int cont, Lote lote) {
 		JButton Verde = new JButton();
 		Verde.setBounds(0,cont,250,30);
@@ -38,6 +39,7 @@ public class Screen extends JFrame{
 		add(Verde);
 		Verde.setText(lote.produtos.get(0).nome);
 	}
+	
 	public void criarBotaoVermelho(int cont, Lote lote) {
 		JButton Vermelho = new JButton();
 		Vermelho.setBounds(0,cont,250,30);
@@ -49,18 +51,18 @@ public class Screen extends JFrame{
 	}
 
 	public void gerarInterfaceGrafica(ArrayList<Lote> lotes) {
-		Semaforo Semaforo = new Semaforo();
-		Semaforo.verificarValidade(lotes);
+		Validacao Validacao = new Validacao();
+		Validacao.verificarValidade(lotes);
 		int cont = 0;
-		for(Lote lote : Semaforo.Vermelho) {
+		for(Lote lote : Validacao.Vermelho) {
 			criarBotaoVermelho(cont, lote);
 			cont = cont +30;
 		}
-		for(Lote lote : Semaforo.Amarelo) {
+		for(Lote lote : Validacao.Amarelo) {
 			criarBotaoAmarelo(cont, lote);
 			cont = cont +30;
 		}
-		for(Lote lote : Semaforo.Verde) {
+		for(Lote lote : Validacao.Verde) {
 			criarBotaoVerde(cont, lote);
 			cont = cont +30;
 		}

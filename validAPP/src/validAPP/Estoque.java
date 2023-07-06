@@ -34,6 +34,7 @@ public class Estoque {
 		for(int i = 0; i<qtdProdutos; i++) {
 			produtos.add(new Produto(nomeProduto, precoProduto, categoria));
 		}
+		
 		Lote L = new Lote(produtos, validade, numeroLote, localidade, qtdProdutos);
 		this.adicionarLote(L);
 	}

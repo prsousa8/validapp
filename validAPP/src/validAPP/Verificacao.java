@@ -2,15 +2,15 @@ package validAPP;
 
 public class Verificacao{
 	
-	public Semaforo S;
+	public Validacao validacao;
 	
 	public Verificacao() {
-		this.S = new Semaforo();
+		this.validacao = new Validacao();
 	}
 	
 	public void verificar_e_printar_lotes(Estoque E) {
 		E.ordenarEstoque(E.lotes);
-		this.S.mostrarSemaforo(E.lotes);
+		this.validacao.mostrarValidacao(E.lotes);
 	}
 	
 }

@@ -2,7 +2,7 @@ package validAPP;
 
 import java.util.ArrayList;
 
-public class Semaforo {
+public class Validacao {
 
 	public ArrayList <Lote> Verde;
 	public ArrayList <Lote> Amarelo;
@@ -12,7 +12,7 @@ public class Semaforo {
 	public static final String ANSI_GREEN = "\u001B[32m";
 	public static final String ANSI_YELLOW = "\u001B[33m";
 	
-	public Semaforo() {
+	public Validacao() {
 		Verde = new ArrayList <Lote>();
 		Amarelo = new ArrayList <Lote>();
 		Vermelho = new ArrayList <Lote>();
@@ -59,7 +59,7 @@ public class Semaforo {
 		}
 	}
 	
-	public void mostrarSemaforo(ArrayList<Lote> lotes) {
+	public void mostrarValidacao(ArrayList<Lote> lotes) {
 		verificarValidade(lotes);
 		imprimirVerde();
 		imprimirAmarelo();
