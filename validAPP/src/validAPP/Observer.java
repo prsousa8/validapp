@@ -5,7 +5,7 @@ public class Observer {
 	protected Notificacao notificacao;
 	protected Loja loja;
 	protected int id = 0;
-	protected AdapterSetter lojaAdapterSetter;
+	protected AdapterSetter adapterSetter;
 	
 	//M�TODO CONSTRUTOR
 	public Observer() {
@@ -14,14 +14,14 @@ public class Observer {
 	
 	//METODOS
 	public void setState() {
-		lojaAdapterSetter.instanciarClasse();
+		adapterSetter.instanciarClasse();
 		
 		this.id = id + 1;
 		notifyObservers();
 	}
 	
 	private void notifyObservers() {
-		notificacao.Notificar(loja);
+		notificacao.notificar(loja);
 	}
 	
 	public void setState(Loja loja) {
