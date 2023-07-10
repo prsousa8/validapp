@@ -1,5 +1,5 @@
 package validAPP;
 
-public interface InstanciaInterface {
+public interface SetterInterface {
 	void instanciarClasse();
 }

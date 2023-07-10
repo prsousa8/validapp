@@ -5,7 +5,7 @@ public final class Loja {
 	private String cnpj;
 	private Estoque estoque;
 	private static Loja instanciaLoja;
-    private AdapterInstancia estoqueAdapter;
+    private AdapterSetter estoqueAdapterSetter;
 	
 	//METODO CONSTRUTOR
 	private Loja(String cnpj, Estoque estoque) {
@@ -22,7 +22,7 @@ public final class Loja {
 		
 		estoque.criar_e_adicionar_lote_ao_estoque("limao", 15.50, "frutas", 7, "10/10/2022", "C0D09", "setor 10");
 		estoque.criar_e_adicionar_lote_ao_estoque("uva", 15.50, "frutas", 5, "10/10/2024", "C0D010", "setor 10");
-		estoque.criar_e_adicionar_lote_ao_estoque("maca", 5.00, "frutas", 5, "10/07/2023", "C0D011", "setor 10");
+		estoque.criar_e_adicionar_lote_ao_estoque("maca", 5.00, "frutas", 5, "13/07/2023", "C0D011", "setor 10");
 		estoque.criar_e_adicionar_lote_ao_estoque("arroz", 5.50, "alimentos", 7, "10/10/2021", "C0D08", "setor 10");
 		estoque.criar_e_adicionar_lote_ao_estoque("feijao", 5.00, "alimentos", 7, "10/12/2022", "C0D07", "setor 10");
 		estoque.criar_e_adicionar_lote_ao_estoque("leite", 5.50, "alimentos", 7, "10/10/2023", "C0D08", "setor 10");
@@ -45,6 +45,6 @@ public final class Loja {
 	}
 	
 	public void setEstoque(Estoque estoque) {
-		this.estoque = estoque;
+		estoqueAdapterSetter.instanciarClasse();
 	}	
 }
