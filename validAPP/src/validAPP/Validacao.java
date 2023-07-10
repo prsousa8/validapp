@@ -3,7 +3,7 @@ package validAPP;
 import java.util.ArrayList;
 
 public class Validacao {
-
+	//ATRIBUTOS
 	public ArrayList <Lote> Verde;
 	public ArrayList <Lote> Amarelo;
 	public ArrayList <Lote> Vermelho;
@@ -12,12 +12,14 @@ public class Validacao {
 	public static final String ANSI_GREEN = "\u001B[32m";
 	public static final String ANSI_YELLOW = "\u001B[33m";
 	
+	//METODO CONSTRUTOR
 	public Validacao() {
 		Verde = new ArrayList <Lote>();
 		Amarelo = new ArrayList <Lote>();
 		Vermelho = new ArrayList <Lote>();
 	}
 	
+	//METODOS	
 	public void verificarValidade(ArrayList<Lote> lotes) {
 		
 		for(Lote lote : lotes) {

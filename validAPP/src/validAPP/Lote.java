@@ -27,12 +27,12 @@ public class Lote implements Comparable<Lote>{
 	}
 	
 	//MÉTODOS
-
+	
 	@Override
-	public int compareTo(Lote L) {
-		if (this.diasRestantes > L.diasRestantes){ 
+	public int compareTo(Lote lote) {
+		if (this.diasRestantes > lote.diasRestantes){ 
 			return 1; 
-		}if (this.diasRestantes < L.diasRestantes){ 
+		}if (this.diasRestantes < lote.diasRestantes){ 
 			return -1; 
 		}
 		return 0; 

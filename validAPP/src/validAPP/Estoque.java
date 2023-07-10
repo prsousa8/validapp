@@ -2,22 +2,35 @@ package validAPP;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Observable;
 
-public class Estoque {
+public class Estoque extends Observable{
 	//ATRIBUTOS
 	public ArrayList<Lote> lotes;
+	private String acao = "";
 	
-	//M�TODO CONSTRUTOR
+	//METODO CONSTRUTOR
 	public Estoque() {
 		lotes = new ArrayList<Lote>();
 	}
 	
 	//MÉTODOS
-	
 	public void adicionarLote(Lote lote) {
 		lotes.add(lote);
 	}
 	
+	public void removerLote(Lote lote) {
+		acao = "LoteRemovido";
+		lotes.remove(lote);
+		this.mudaEstado();
+	}
+	
+	private void mudaEstado() {
+		// TODO Auto-generated method stub
+		setChanged();
+		notifyObservers(acao);
+	}
+
 	public void imprimir() {
 		System.out.println("Lotes disponíveis:");
 		for (Lote lote : lotes) {
@@ -35,8 +48,8 @@ public class Estoque {
 			produtos.add(new Produto(nomeProduto, precoProduto, categoria));
 		}
 		
-		Lote L = new Lote(produtos, validade, numeroLote, localidade, qtdProdutos);
-		this.adicionarLote(L);
+		Lote lote = new Lote(produtos, validade, numeroLote, localidade, qtdProdutos);
+		this.adicionarLote(lote);
 	}
 	
 }

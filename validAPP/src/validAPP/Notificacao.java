@@ -3,14 +3,20 @@ package validAPP;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
-
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Notificacao extends JFrame{
+public class Notificacao extends JFrame implements Observer{
+	//ATRIBUTOS
+	public int id;
+	public Loja loja;
 	
-	public Notificacao () {
+	//M�TODO CONSTRUTOR
+	public Notificacao (int id) {
+		this.id = id;
 		setVisible(true);
 		setSize(266,500);
 		setTitle("validAPP");
@@ -20,62 +26,101 @@ public class Notificacao extends JFrame{
 		setLocationRelativeTo(null);
 	}
 	
-	public void criarBotaoAmarelo(int cont, Lote lote) {
+	//METODOS
+	public void criarBotaoAmarelo(int cont, Lote lote, Loja loja) {
 		JButton Amarelo = new JButton();
 		Amarelo.setBounds(0,cont,250,30);
 		Amarelo.setFont(new Font("Arial", Font.BOLD, 15));
 		Amarelo.setBackground(new Color(255,250,205));
-		Amarelo.addActionListener(action->{this.teste(lote);});
+		Amarelo.addActionListener(action->{this.teste(lote, loja);});
 		add(Amarelo);
 		Amarelo.setText(lote.produtos.get(0).nome);
 	}
 	
-	public void criarBotaoVerde(int cont, Lote lote) {
+	public void criarBotaoVerde(int cont, Lote lote, Loja loja) {
 		JButton Verde = new JButton();
 		Verde.setBounds(0,cont,250,30);
 		Verde.setFont(new Font("Arial", Font.BOLD, 15));
 		Verde.setBackground(new Color(152,251,152));
-		Verde.addActionListener(action->{this.teste(lote);});
+		Verde.addActionListener(action->{this.teste(lote, loja);});
 		add(Verde);
 		Verde.setText(lote.produtos.get(0).nome);
 	}
 	
-	public void criarBotaoVermelho(int cont, Lote lote) {
+	public void criarBotaoVermelho(int cont, Lote lote, Loja loja) {
 		JButton Vermelho = new JButton();
 		Vermelho.setBounds(0,cont,250,30);
 		Vermelho.setFont(new Font("Arial", Font.BOLD, 15));
 		Vermelho.setBackground(new Color(216,191,216));
-		Vermelho.addActionListener(action->{this.teste(lote);});
+		Vermelho.addActionListener(action->{this.teste(lote, loja);});
 		add(Vermelho);
 		Vermelho.setText(lote.produtos.get(0).nome);
 	}
 
-	public void gerarInterfaceGrafica(ArrayList<Lote> lotes) {
-		Validacao Validacao = new Validacao();
-		Validacao.verificarValidade(lotes);
+	public void gerarInterfaceGrafica(Loja loja) {
+		this.loja = loja;
+		Verificacao V = new Verificacao();
+		V.verificar_e_printar_lotes(loja.getEstoque());
+		
 		int cont = 0;
-		for(Lote lote : Validacao.Vermelho) {
-			criarBotaoVermelho(cont, lote);
+		for(Lote lote : V.validacao.Vermelho) {
+			criarBotaoVermelho(cont, lote, loja);
 			cont = cont +30;
 		}
-		for(Lote lote : Validacao.Amarelo) {
-			criarBotaoAmarelo(cont, lote);
+		for(Lote lote : V.validacao.Amarelo) {
+			criarBotaoAmarelo(cont, lote, loja);
 			cont = cont +30;
 		}
-		for(Lote lote : Validacao.Verde) {
-			criarBotaoVerde(cont, lote);
+		for(Lote lote : V.validacao.Verde) {
+			criarBotaoVerde(cont, lote, loja);
 			cont = cont +30;
 		}
 		
 	}
 	
-	private void teste(Lote lote) {
-		JOptionPane.showMessageDialog(null, "Validade: "+lote.validade +
-				"\nNúmero do lote: " + lote.numero +
-				"\nLocalidade: " + lote.localidade +
-				"\nQuantidade de produtos: " + lote.qtdProdutos
-				, lote.produtos.get(1).nome, JOptionPane.INFORMATION_MESSAGE
-				);
+	private void teste(Lote lote, Loja loja) {
+		if(lote.diasRestantes > 0) {
+			JOptionPane.showMessageDialog(null, "Validade: "+lote.validade +
+					"\nNúmero do lote: " + lote.numero +
+					"\nLocalidade: " + lote.localidade +
+					"\nQuantidade de produtos: " + lote.qtdProdutos + 
+					"\n" + lote.diasRestantes + " dias restantes"
+					, lote.produtos.get(1).nome, JOptionPane.INFORMATION_MESSAGE 
+					);
+		}else if(lote.diasRestantes <= 0){
+			JOptionPane.showMessageDialog(null, "Validade: "+lote.validade +
+					"\nNúmero do lote: " + lote.numero +
+					"\nLocalidade: " + lote.localidade +
+					"\nQuantidade de produtos: " + lote.qtdProdutos + 
+					"\nVencido a " + lote.diasRestantes*(-1) + " dias"
+					, lote.produtos.get(1).nome, JOptionPane.CANCEL_OPTION 
+					);
+			if (JOptionPane.showConfirmDialog(null, "Deseja remover estoque?", lote.produtos.get(1).nome, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				this.dispose(); 
+				loja.getEstoque().removerLote(lote);
+			}
+			
+		}
+		
+	}
+	
+	public void Notificar(Loja loja) { 
+		this.loja = loja;
+		this.id++;
+		Notificacao N = new Notificacao(this.id);
+		N.gerarInterfaceGrafica(loja);
 	}
 
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		String acao = String.valueOf(arg1);
+		
+		if(acao.equals("LoteRemovido")) {
+			this.Notificar(this.loja);
+			this.dispose(); 
+		}
+		
+	}
+	
 }
