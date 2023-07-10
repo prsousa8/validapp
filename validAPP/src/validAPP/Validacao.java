@@ -14,14 +14,13 @@ public class Validacao {
 	
 	//METODO CONSTRUTOR
 	public Validacao() {
-		Verde = new ArrayList <Lote>();
-		Amarelo = new ArrayList <Lote>();
-		Vermelho = new ArrayList <Lote>();
+		this.Verde = new ArrayList <Lote>();
+		this.Amarelo = new ArrayList <Lote>();
+		this.Vermelho = new ArrayList <Lote>();
 	}
 	
 	//METODOS	
 	public void verificarValidade(ArrayList<Lote> lotes) {
-		
 		for(Lote lote : lotes) {
 			if(lote.diasRestantes < 0) { //vermelho
 				this.Vermelho.add(lote);
@@ -31,7 +30,6 @@ public class Validacao {
 				this.Verde.add(lote);
 			}
 		}
-		
 	}
 	
 	public void imprimirVerde() {

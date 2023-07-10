@@ -5,7 +5,7 @@ public class Observer {
 	protected Notificacao notificacao;
 	protected Loja loja;
 	protected int id = 0;
-	protected AdapterInstancia lojaInstanciaAdapter;
+	protected AdapterSetter lojaAdapterSetter;
 	
 	//M�TODO CONSTRUTOR
 	public Observer() {
@@ -13,8 +13,8 @@ public class Observer {
 	}
 	
 	//METODOS
-	public void setState(Loja loja) {
-		lojaInstanciaAdapter.instanciarClasse();
+	public void setState() {
+		lojaAdapterSetter.instanciarClasse();
 		
 		this.id = id + 1;
 		notifyObservers();
@@ -23,5 +23,9 @@ public class Observer {
 	private void notifyObservers() {
 		notificacao.Notificar(loja);
 	}
+	
+	public void setState(Loja loja) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 }

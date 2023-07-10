@@ -1,20 +1,20 @@
 package validAPP;
     
 // set loja set estoque
-public class AdapterInstancia implements InstanciaInterface{
+public class AdapterSetter implements SetterInterface{
     private Loja loja;
     private Observer observer;
     private Estoque estoque;
     
-    public AdapterInstancia(Loja loja){
+    public AdapterSetter(Loja loja){
         this.loja = loja;
     }
     
-    public AdapterInstancia(Observer observer){
+    public AdapterSetter(Observer observer){
         this.observer = observer;
     }
     
-    public AdapterInstancia(Estoque estoque){
+    public AdapterSetter(Estoque estoque){
         this.estoque = estoque;
     }
     

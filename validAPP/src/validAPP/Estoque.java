@@ -11,7 +11,7 @@ public class Estoque extends Observable{
 	
 	//METODO CONSTRUTOR
 	public Estoque() {
-		lotes = new ArrayList<Lote>();
+		this.lotes = new ArrayList<Lote>();
 	}
 	
 	//MÉTODOS
