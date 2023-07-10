@@ -105,10 +105,13 @@ public class Notificacao extends JFrame implements Observer{
 	}
 	
 	public void Notificar(Loja loja) { 
-		this.loja = loja;
-		this.id++;
-		Notificacao N = new Notificacao(this.id);
-		N.gerarInterfaceGrafica(loja);
+		if(this.id == 0) {
+			gerarInterfaceGrafica(loja);
+		}else {
+			this.loja = loja;
+			Notificacao N = new Notificacao(this.id);
+			N.gerarInterfaceGrafica(loja);
+		}
 	}
 
 	@Override
@@ -117,8 +120,8 @@ public class Notificacao extends JFrame implements Observer{
 		String acao = String.valueOf(arg1);
 		
 		if(acao.equals("LoteRemovido")) {
+			this.id++;
 			this.Notificar(this.loja);
-			this.dispose(); 
 		}
 		
 	}
