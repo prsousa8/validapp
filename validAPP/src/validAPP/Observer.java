@@ -5,6 +5,7 @@ public class Observer {
 	protected Notificacao notificacao;
 	protected Loja loja;
 	protected int id = 0;
+	protected AdapterInstancia lojaInstanciaAdapter;
 	
 	//M�TODO CONSTRUTOR
 	public Observer() {
@@ -13,10 +14,12 @@ public class Observer {
 	
 	//METODOS
 	public void setState(Loja loja) {
-		this.loja = loja;
+		lojaInstanciaAdapter.instanciarClasse();
+		
 		this.id = id + 1;
 		notifyObservers();
 	}
+	
 	private void notifyObservers() {
 		notificacao.Notificar(loja);
 	}

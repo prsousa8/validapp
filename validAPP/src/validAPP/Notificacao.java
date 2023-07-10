@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+@SuppressWarnings({ "deprecation", "serial" })
 public class Notificacao extends JFrame implements Observer{
 	//ATRIBUTOS
 	public int id;

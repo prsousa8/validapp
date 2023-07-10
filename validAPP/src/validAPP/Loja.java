@@ -1,10 +1,11 @@
-package validAPP;
+ package validAPP;
 
 public final class Loja {
 	//ATRIBUTOS
 	private String cnpj;
 	private Estoque estoque;
 	private static Loja instanciaLoja;
+    private AdapterInstancia estoqueAdapter;
 	
 	//METODO CONSTRUTOR
 	private Loja(String cnpj, Estoque estoque) {
