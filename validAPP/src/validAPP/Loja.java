@@ -5,7 +5,7 @@ public final class Loja {
 	private String cnpj;
 	private Estoque estoque;
 	private static Loja instanciaLoja;
-    private AdapterSetter estoqueAdapterSetter;
+    private AdapterSetter adapterSetter;
 	
 	//METODO CONSTRUTOR
 	private Loja(String cnpj, Estoque estoque) {
@@ -45,6 +45,6 @@ public final class Loja {
 	}
 	
 	public void setEstoque(Estoque estoque) {
-		estoqueAdapterSetter.instanciarClasse();
+		adapterSetter.instanciarClasse();
 	}	
 }

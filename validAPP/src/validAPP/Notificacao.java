@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-@SuppressWarnings({ "deprecation", "serial" })
 public class Notificacao extends JFrame implements Observer{
 	//ATRIBUTOS
 	public int id;
@@ -105,7 +104,7 @@ public class Notificacao extends JFrame implements Observer{
 		
 	}
 	
-	public void Notificar(Loja loja) { 
+	public void notificar(Loja loja) { 
 		if(this.id == 0) {
 			gerarInterfaceGrafica(loja);
 		}else {
@@ -122,7 +121,7 @@ public class Notificacao extends JFrame implements Observer{
 		
 		if(acao.equals("LoteRemovido")) {
 			this.id++;
-			this.Notificar(this.loja);
+			this.notificar(this.loja);
 		}
 		
 	}

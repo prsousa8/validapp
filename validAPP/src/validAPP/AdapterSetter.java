@@ -21,12 +21,12 @@ public class AdapterSetter implements SetterInterface{
     /** ADAPTER PARA SETSTATE EM OBSERVER e PARA SETESTOQUE EM LOJA **/
     @Override
     public void instanciarClasse() {
-        if(loja != null){
-            loja.setEstoque(estoque);
+        if(this.loja != null){
+            this.loja.setEstoque(this.estoque);
         }
         
-        if(observer != null){
-           observer.setState(loja);
+        if(this.observer != null){
+           this.observer.setState(this.loja);
         }
         
     }
