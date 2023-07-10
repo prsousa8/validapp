@@ -17,6 +17,7 @@ public class EstoqueTest {
 		E.criar_e_adicionar_lote_ao_estoque("Tomate", 2.30, "Fruta", 4, "03/09/2100", "23456", "Setor 23");
 		E.removerLote(E.lotes.get(1));
 		assertEquals(E.lotes.size(),1);
+		assertEquals(E.lotes.get(0).qtdProdutos,3);
 		E.removerLote(E.lotes.get(0));
 		assertEquals(E.lotes.size(),0);
 	}
