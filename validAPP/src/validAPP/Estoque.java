@@ -47,7 +47,6 @@ public class Estoque extends Observable{
 		for(int i = 0; i<qtdProdutos; i++) {
 			produtos.add(new Produto(nomeProduto, precoProduto, categoria));
 		}
-		
 		Lote lote = new Lote(produtos, validade, numeroLote, localidade, qtdProdutos);
 		this.adicionarLote(lote);
 	}
