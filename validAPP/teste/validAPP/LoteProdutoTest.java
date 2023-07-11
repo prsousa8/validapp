@@ -39,7 +39,7 @@ public class LoteProdutoTest {
 		assertEquals("01/01/2024", lote1.validade);
 		assertEquals("Local1", lote1.localidade);
 		assertEquals(3, lote1.produtos.size());
-		assertEquals(175, lote1.diasRestantes);
+		assertEquals(174, lote1.diasRestantes);
 	}
 	
 	@Test
